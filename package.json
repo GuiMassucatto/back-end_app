@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "dev": "npx nodemon api/server.js"
+    "dev": "npx nodemon api/server.js",
+    "postinstall": "prisma migrate dev --name init && prisma generate"
   },
   "keywords": [],
   "author": "Guilherme Stafocher Massucatto",
