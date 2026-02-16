@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Agendamento {
+  id        Int      @id @default(autoincrement())
+  data      DateTime
+  horario   String
+  nome      String?
+  ocupado   Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@unique([data, horario], name: "data_horario")
+}
