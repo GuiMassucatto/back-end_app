@@ -187,8 +187,25 @@ const liberar = async (req, res) => {
     }
 };
 
+const deletarHorario = async (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+
+        await prisma.agendamento.delete({
+            where: { id }
+        });
+
+        return res.status(200).json({ mensagem: "Horário deletado com sucesso" });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(400).json({ erro: "Erro ao deletar horário" });
+    }
+};
+
 module.exports = {
     read,
     reservar,
-    liberar
+    liberar,
+    deletarHorario
 };
